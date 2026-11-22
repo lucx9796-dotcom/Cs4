@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "cs4",
+  "version": "${version}",
+  "name": "Creative Squad 4",
+  "description": "Relíquias lendárias: itens do próprio Minecraft com habilidades e encantamentos roubados.",
+  "authors": ["Creative Squad"],
+  "environment": "*",
+  "entrypoints": { "main": ["br.com.creativesquad.cs4.Cs4"] },
+  "mixins": ["cs4.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
