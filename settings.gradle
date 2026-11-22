@@ -5,4 +5,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'cs4'
+rootProject.name = 'creative-squad-4'

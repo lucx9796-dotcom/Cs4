@@ -1,8 +1,15 @@
 {
   "required": true,
-  "package": "br.com.creativesquad.cs4.mixin",
-  "compatibilityLevel": "JAVA_25",
-  "mixins": ["ItemEntityMixin", "EntityDisplayNameMixin", "LivingEntityEquipMixin"],
-  "client": ["client.AvatarRendererMixin"],
-  "injectors": { "defaultRequire": 1 }
+  "package": "com.creativesquad.cs4.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ItemEntityMixin",
+    "PlayerInfoEntryMixin",
+    "PlayerNameMixin",
+    "PlayerListMixin",
+    "DragonHeadGlintMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
