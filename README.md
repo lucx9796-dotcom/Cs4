@@ -10,7 +10,7 @@ Base técnica copiada do mod da Irmandade (IMDD) 26.2.
 - **Instale o mod no servidor E nos clientes**: o Lampião (armadura/itens invisíveis) precisa do mod no cliente.
 
 ## /relics
-Só operadores (nível 2; para liberar a todos, remova o `.requires(...)` em `RelicsCommand`). Abre a GUI de 27 slots
+Só operadores (nível 2; para liberar a todos, remova o `.requires(...)` em `RelicsCommand`). Abre a GUI de 18 slots
 `CS» Relíquia`. Clique esquerdo **ou** direito dá uma cópia do item e o item continua na GUI.
 
 ## Indestrutível

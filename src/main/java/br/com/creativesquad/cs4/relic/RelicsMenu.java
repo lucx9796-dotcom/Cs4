@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-/** GUI 9x3 do /relics: clique esquerdo ou direito entrega uma cópia; o item continua na GUI. */
+/** GUI 9x2 do /relics: clique esquerdo ou direito entrega uma cópia; o item continua na GUI. */
 public class RelicsMenu extends ChestMenu {
 
     /** [{"text":"CS","bold":true,"color":"#fbf00f"},{"text":"»","color":"gray"},{"text":" Relíquia","color":"#2e2e2e"}] */
@@ -28,20 +28,20 @@ public class RelicsMenu extends ChestMenu {
     }
 
     public RelicsMenu(int syncId, Inventory playerInv, Container container) {
-        super(MenuType.GENERIC_9x3, syncId, playerInv, container, 3);
+        super(MenuType.GENERIC_9x2, syncId, playerInv, container, 2);
     }
 
     public static void open(ServerPlayer player) {
-        SimpleContainer inv = new SimpleContainer(27);
+        SimpleContainer inv = new SimpleContainer(18);
         List<ItemStack> relics = RelicRegistry.stacks();
-        for (int i = 0; i < Math.min(27, relics.size()); i++) inv.setItem(i, relics.get(i).copy());
+        for (int i = 0; i < Math.min(18, relics.size()); i++) inv.setItem(i, relics.get(i).copy());
         player.openMenu(new SimpleMenuProvider(
                 (syncId, pInv, p) -> new RelicsMenu(syncId, pInv, inv), title()));
     }
 
     @Override
     public void clicked(int slotIndex, int button, ContainerInput clickType, Player player) {
-        if (slotIndex >= 0 && slotIndex < 27 && clickType == ContainerInput.PICKUP && (button == 0 || button == 1)) {
+        if (slotIndex >= 0 && slotIndex < 18 && clickType == ContainerInput.PICKUP && (button == 0 || button == 1)) {
             ItemStack shown = getSlot(slotIndex).getItem();
             if (!shown.isEmpty()) {
                 ItemStack give = shown.copy();
