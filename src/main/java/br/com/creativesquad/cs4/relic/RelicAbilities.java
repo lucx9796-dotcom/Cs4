@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.PowerParticleOption;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -50,6 +51,9 @@ public final class RelicAbilities {
     private static final float BREATH_DAMAGE = 4.0f;
     private static final int BREATH_DURATION = 200;
     private static final double BREATH_RADIUS = 3.0;
+
+    /** DRAGON_BREATH agora é ParticleType<PowerParticleOption>: precisa de uma opção (força 1.0). */
+    private static final PowerParticleOption BREATH = PowerParticleOption.create(ParticleTypes.DRAGON_BREATH, 1.0f);
 
     private record Fireball(ServerLevel level, UUID owner, double[] pos, Vec3 dir, int[] age) {}
     private record Cloud(ServerLevel level, UUID owner, Vec3 center, int[] age) {}
@@ -208,7 +212,7 @@ public final class RelicAbilities {
                 AABB box = new AABB(nx - 0.6, ny - 0.6, nz - 0.6, nx + 0.6, ny + 0.6, nz + 0.6);
                 if (!w.getEntitiesOfClass(LivingEntity.class, box, e -> e.isAlive() && !e.getUUID().equals(f.owner())).isEmpty()) hit = true;
             }
-            w.sendParticles(ParticleTypes.DRAGON_BREATH, f.pos()[0], f.pos()[1], f.pos()[2], 6, 0.15, 0.15, 0.15, 0.01);
+            w.sendParticles(BREATH, f.pos()[0], f.pos()[1], f.pos()[2], 6, 0.15, 0.15, 0.15, 0.01);
             f.age()[0]++;
             if (hit || f.age()[0] > 40) {
                 Vec3 c = new Vec3(f.pos()[0], f.pos()[1], f.pos()[2]);
@@ -226,7 +230,7 @@ public final class RelicAbilities {
             if (age % 2 == 0) {
                 for (int n = 0; n < 8; n++) {
                     double a = w.getRandom().nextDouble() * Math.PI * 2, d = Math.sqrt(w.getRandom().nextDouble()) * radius;
-                    w.sendParticles(ParticleTypes.DRAGON_BREATH, c.center().x + Math.cos(a) * d, c.center().y + 0.1, c.center().z + Math.sin(a) * d,
+                    w.sendParticles(BREATH, c.center().x + Math.cos(a) * d, c.center().y + 0.1, c.center().z + Math.sin(a) * d,
                             1, 0, 0.02, 0, 0.005);
                 }
             }
